@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { backtestApi } from './api/backtestApi';
-import { BacktestRequest, BacktestResponse } from './types';
+import type { BacktestRequest, BacktestResponse } from './types';
 import ConfigForm from './components/ConfigForm';
 import ResultChart from './components/ResultChart';
 import HistoryTable from './components/HistoryTable';

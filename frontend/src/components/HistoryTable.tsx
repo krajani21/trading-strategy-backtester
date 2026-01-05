@@ -1,5 +1,4 @@
-import React from 'react';
-import { BacktestResponse } from '../types';
+import type { BacktestResponse } from '../types';
 
 interface HistoryTableProps {
     history: BacktestResponse[];

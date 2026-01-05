@@ -1,4 +1,3 @@
-import React from 'react';
 import {
     LineChart,
     Line,
@@ -9,7 +8,7 @@ import {
     ResponsiveContainer,
     ReferenceLine,
 } from 'recharts';
-import { BacktestResponse } from '../types';
+import type { BacktestResponse } from '../types';
 
 interface ResultChartProps {
     result: BacktestResponse | null;

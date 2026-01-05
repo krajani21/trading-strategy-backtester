@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { BacktestRequest, PricePoint } from '../types';
+import { useState } from 'react';
+import type { BacktestRequest, PricePoint } from '../types';
 
 interface ConfigFormProps {
     onSubmit: (request: BacktestRequest) => void;

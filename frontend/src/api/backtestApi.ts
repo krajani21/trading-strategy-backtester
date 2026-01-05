@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BacktestRequest, BacktestResponse } from '../types';
+import type { BacktestRequest, BacktestResponse } from '../types';
 
 const API_BASE_URL = 'http://localhost:8080/api';
 

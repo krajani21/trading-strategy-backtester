@@ -1,0 +1,50 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  trading-strategy-backtester
+  
+  Serverless Spring Boot 3 API
+
+Globals:
+  Function:
+    Timeout: 30
+    MemorySize: 2048
+    Runtime: java21
+
+Resources:
+  BacktesterApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      StageName: prod
+      CorsConfiguration:
+        AllowOrigins:
+          - "*"
+        AllowMethods:
+          - GET
+          - POST
+          - OPTIONS
+        AllowHeaders:
+          - "*"
+
+  BacktesterFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Handler: com.fintech.backtester.StreamLambdaHandler::handleRequest
+      SnapStart:
+        ApplyOn: PublishedVersions
+      Events:
+        HttpApiEvent:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref BacktesterApi
+            Path: /{proxy+}
+            Method: ANY
+      Environment:
+        Variables:
+          JAVA_TOOL_OPTIONS: "-XX:+TieredCompilation -XX:TieredStopAtLevel=1"
+
+Outputs:
+  BacktesterApiUrl:
+    Description: URL of the API Gateway
+    Value: !Sub "https://${BacktesterApi}.execute-api.${AWS::Region}.amazonaws.com/prod"

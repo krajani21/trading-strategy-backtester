@@ -4,7 +4,7 @@ import com.fintech.backtester.model.BacktestResult;
 import com.fintech.backtester.model.PricePoint;
 import com.fintech.backtester.model.TradeAction;
 import com.fintech.backtester.model.TradeSignal;
-import com.fintech.backtester.repository.BacktestRepository;
+import com.fintech.backtester.repository.DynamoDbRepository;
 import com.fintech.backtester.service.strategy.Strategy;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Core service that executes the backtesting simulation.
@@ -23,7 +24,7 @@ import java.util.List;
 public class BacktestingService {
 
     private final Strategy strategy;
-    private final BacktestRepository repository;
+    private final DynamoDbRepository repository;
 
     /**
      * Runs a backtest simulation with the given starting balance and price data.
@@ -78,12 +79,13 @@ public class BacktestingService {
 
         // Build and save result
         BacktestResult result = new BacktestResult();
+        result.setId(UUID.randomUUID().toString());
         result.setStartingBalance(startingBalance);
         result.setFinalBalance(finalBalance);
         result.setTotalProfit(finalBalance.subtract(startingBalance));
         result.setTotalTrades(totalTrades);
         result.setWinRate(winRate);
-        result.setTimestamp(LocalDateTime.now());
+        result.setTimestamp(LocalDateTime.now().toString());
 
         return repository.save(result);
     }

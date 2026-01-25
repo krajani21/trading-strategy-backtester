@@ -1,9 +1,8 @@
 package com.fintech.backtester.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
+import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbPartitionKey;
+import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbSortKey;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,22 +11,35 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
- * JPA Entity to persist backtest results to the H2 database.
+ * DynamoDB Bean to persist backtest results.
  */
-@Entity
+@DynamoDbBean
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class BacktestResult {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    private String id;
     private BigDecimal startingBalance;
     private BigDecimal finalBalance;
     private BigDecimal totalProfit;
     private double winRate;
     private int totalTrades;
-    private LocalDateTime timestamp;
+    private String timestamp; // DynamoDB handles Strings better effectively for simple sort
+
+    @DynamoDbPartitionKey
+    public String getId() {
+        return id;
+    }
+    
+    // We strictly need setters for the bean if we moved annotations to getters, 
+    // but Lombok @Data handles fields. 
+    // However, DynamoDbBean annotations usually go on getters.
+    
+    // Let's rely on standard getter annotation placement:
+    
+    @DynamoDbSortKey
+    public String getTimestamp() {
+        return timestamp;
+    }
 }

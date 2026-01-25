@@ -4,6 +4,8 @@ A full-stack application for backtesting trading strategies against historical p
 
 The application allows users to simulate trading performance using a Mean Reversion strategy on generated price data.
 
+Try it out here: https://trade-pulse-ivory.vercel.app/
+
 ## 🚀 Features
 
 - **Backtesting Engine**: Simulates trades based on configurable strategies.

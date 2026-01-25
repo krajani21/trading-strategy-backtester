@@ -38,7 +38,8 @@ public class DynamoDbRepository {
         // Note: For a real production app with many users, we would use a GSI or specific Partition Key.
         // For this demo, a Scan is acceptable as data volume is low.
         return table.scan().items().stream()
-                .sorted(Comparator.comparing(BacktestResult::getTimestamp).reversed())
+                .sorted(Comparator.comparing(BacktestResult::getTimestamp, 
+                        Comparator.nullsLast(Comparator.reverseOrder())))
                 .limit(10)
                 .collect(Collectors.toList());
     }

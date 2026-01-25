@@ -1,7 +1,8 @@
 package com.fintech.backtester;
 
 import com.amazonaws.serverless.exceptions.ContainerInitializationException;
-import com.amazonaws.serverless.proxy.model.AwsProxyRequest;
+// Notice the .v2 in the package name below
+import com.amazonaws.serverless.proxy.model.HttpApiV2ProxyRequest;
 import com.amazonaws.serverless.proxy.model.AwsProxyResponse;
 import com.amazonaws.serverless.proxy.spring.SpringBootLambdaContainerHandler;
 import com.amazonaws.services.lambda.runtime.Context;
@@ -12,16 +13,14 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 public class StreamLambdaHandler implements RequestStreamHandler {
-    private static SpringBootLambdaContainerHandler<AwsProxyRequest, AwsProxyResponse> handler;
+    // 1. Update the generic type to HttpApiV2ProxyRequest
+    private static SpringBootLambdaContainerHandler<HttpApiV2ProxyRequest, AwsProxyResponse> handler;
 
     static {
         try {
-            // For SnapStart, we initialize the handler in the static block
-            handler = SpringBootLambdaContainerHandler.getAwsProxyHandler(TradingStrategyBacktesterApplication.class);
-            // This registers the handler for SnapStart optimization
-            // (Note: The actual SnapStart hook is often automatic with the handler instantiation in static block)
+            // 2. Use the factory method for HTTP API (v2)
+            handler = SpringBootLambdaContainerHandler.getHttpApiV2ProxyHandler(TradingStrategyBacktesterApplication.class);
         } catch (ContainerInitializationException e) {
-            // if we fail here. We re-throw the exception to force another cold start
             e.printStackTrace();
             throw new RuntimeException("Could not initialize Spring Boot application", e);
         }
@@ -30,6 +29,7 @@ public class StreamLambdaHandler implements RequestStreamHandler {
     @Override
     public void handleRequest(InputStream inputStream, OutputStream outputStream, Context context)
             throws IOException {
+        // This method handles the stream and passes it to the v2-aware handler
         handler.proxyStream(inputStream, outputStream, context);
     }
 }

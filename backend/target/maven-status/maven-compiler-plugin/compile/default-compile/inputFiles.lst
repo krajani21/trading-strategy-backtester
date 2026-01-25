@@ -1,0 +1,15 @@
+C:\Users\krish\Desktop\trading-strategy-backtester\backend\src\main\java\com\fintech\backtester\repository\DynamoDbRepository.java
+C:\Users\krish\Desktop\trading-strategy-backtester\backend\src\main\java\com\fintech\backtester\config\CorsConfig.java
+C:\Users\krish\Desktop\trading-strategy-backtester\backend\src\main\java\com\fintech\backtester\config\DynamoDbConfig.java
+C:\Users\krish\Desktop\trading-strategy-backtester\backend\src\main\java\com\fintech\backtester\service\strategy\MeanReversionStrategy.java
+C:\Users\krish\Desktop\trading-strategy-backtester\backend\src\main\java\com\fintech\backtester\StreamLambdaHandler.java
+C:\Users\krish\Desktop\trading-strategy-backtester\backend\src\main\java\com\fintech\backtester\service\strategy\Strategy.java
+C:\Users\krish\Desktop\trading-strategy-backtester\backend\src\main\java\com\fintech\backtester\model\BacktestResult.java
+C:\Users\krish\Desktop\trading-strategy-backtester\backend\src\main\java\com\fintech\backtester\service\BacktestingService.java
+C:\Users\krish\Desktop\trading-strategy-backtester\backend\src\main\java\com\fintech\backtester\controller\BacktestController.java
+C:\Users\krish\Desktop\trading-strategy-backtester\backend\src\main\java\com\fintech\backtester\model\TradeSignal.java
+C:\Users\krish\Desktop\trading-strategy-backtester\backend\src\main\java\com\fintech\backtester\dto\BacktestResponse.java
+C:\Users\krish\Desktop\trading-strategy-backtester\backend\src\main\java\com\fintech\backtester\model\PricePoint.java
+C:\Users\krish\Desktop\trading-strategy-backtester\backend\src\main\java\com\fintech\backtester\TradingStrategyBacktesterApplication.java
+C:\Users\krish\Desktop\trading-strategy-backtester\backend\src\main\java\com\fintech\backtester\dto\BacktestRequest.java
+C:\Users\krish\Desktop\trading-strategy-backtester\backend\src\main\java\com\fintech\backtester\model\TradeAction.java

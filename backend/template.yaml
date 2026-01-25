@@ -15,7 +15,7 @@ Resources:
   BacktesterApi:
     Type: AWS::Serverless::HttpApi
     Properties:
-      StageName: prod
+      StageName: '$default'
       CorsConfiguration:
         AllowOrigins:
           - "*"

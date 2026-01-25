@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
  * REST Controller for backtesting endpoints.
  */
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/prod/api")
 @RequiredArgsConstructor
 public class BacktestController {
 

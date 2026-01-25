@@ -40,7 +40,7 @@ function App() {
       await loadHistory();
     } catch (err) {
       console.error('Backtest failed:', err);
-      setError('Failed to run backtest. Make sure the backend is running on port 8080.');
+      setError(err instanceof Error ? err.message : 'Failed to run backtest. Please check backend logs.');
     } finally {
       setIsLoading(false);
     }

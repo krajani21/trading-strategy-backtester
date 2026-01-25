@@ -2,7 +2,6 @@ package com.fintech.backtester.model;
 
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean;
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbPartitionKey;
-import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbSortKey;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -38,7 +37,6 @@ public class BacktestResult {
     
     // Let's rely on standard getter annotation placement:
     
-    @DynamoDbSortKey
     public String getTimestamp() {
         return timestamp;
     }

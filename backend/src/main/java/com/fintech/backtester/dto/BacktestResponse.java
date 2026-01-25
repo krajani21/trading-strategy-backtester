@@ -12,11 +12,11 @@ import java.time.LocalDateTime;
 @Data
 @Builder
 public class BacktestResponse {
-    private Long id;
+    private String id;
     private BigDecimal startingBalance;
     private BigDecimal finalBalance;
     private BigDecimal totalProfit;
     private double winRate;
     private int totalTrades;
-    private LocalDateTime timestamp;
+    private String timestamp;
 }

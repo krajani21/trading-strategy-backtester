@@ -57,8 +57,8 @@ const ConfigForm: React.FC<ConfigFormProps> = ({ onSubmit, isLoading }) => {
                         id="startingBalance"
                         value={startingBalance}
                         onChange={(e) => setStartingBalance(e.target.value)}
-                        min="1"
-                        step="100"
+                        min="0"
+                        step="1"
                         required
                     />
                 </div>
